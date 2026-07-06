@@ -4,6 +4,6 @@
   "private": true,
   "description": "Página de vendas - Lei da Atração Natural",
   "scripts": {
-    "build": "node scripts/prepare-deploy.js"
+    "sync": "node scripts/prepare-deploy.js"
   }
 }

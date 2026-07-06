@@ -277,7 +277,7 @@ p { color: var(--text-secondary); }
   position: relative;
   padding: 24px 0 48px;
   overflow: hidden;
-  background: var(--bg-color) url('/IMAGENS/WEBP/Agrupar%2015.webp') center top / cover no-repeat;
+  background: var(--bg-color) url('IMAGENS/WEBP/Agrupar%2015.webp') center top / cover no-repeat;
 }
 
 .hero::before {
