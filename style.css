@@ -567,6 +567,10 @@ p { color: var(--text-secondary); }
   margin-top: 2px;
 }
 
+.problem-grid .testimonial-inline {
+  margin: 0;
+}
+
 /* ── Problem Section ── */
 .problem-section {
   background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-dark) 100%);
