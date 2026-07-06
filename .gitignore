@@ -6,5 +6,5 @@ Thumbs.db
 # Produto digital (não necessário no repositório)
 PRODUTO/
 
-# Export Elementor (apenas referência local)
-PÁGINA DE VENDAS/elementor-*.json
+# Export Elementor (apenas referência local — não é o site publicado)
+PÁGINA DE VENDAS/

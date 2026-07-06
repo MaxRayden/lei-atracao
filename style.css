@@ -642,69 +642,224 @@ p { color: var(--text-secondary); }
   margin: 0 auto;
 }
 
-/* ── Comparison Table ── */
+/* ── Comparison Board ── */
 .comparison-section {
   background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
 }
 
-.comparison-table {
-  width: 100%;
+.comparison-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 203, 93, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(50, 205, 50, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.comparison-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.comparison-title {
+  font-family: var(--font-montserrat);
+  font-size: clamp(1.15rem, 4.8vw, 1.75rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 16px rgba(255, 203, 93, 0.25);
+}
+
+.comparison-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  margin-bottom: 22px;
+  line-height: 1.45;
+}
+
+.comparison-board {
   max-width: 520px;
   margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.82rem;
 }
 
-.comparison-table thead th {
-  padding: 14px 10px;
-  font-family: var(--font-exo);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.comparison-columns {
+  display: grid;
+  grid-template-columns: 1.12fr 0.74fr 0.86fr;
+  gap: 7px;
+  align-items: stretch;
 }
 
-.comparison-table thead th:first-child {
+.cmp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.cmp-spacer {
+  min-height: 62px;
+}
+
+.cmp-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 54px;
+  padding: 8px 7px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 203, 93, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  font-family: var(--font-exo);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.cmp-label .label-icon {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.cmp-header {
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 6px;
   text-align: center;
+  border-radius: 12px 12px 0 0;
 }
 
-.comparison-table thead th.bad {
-  background: rgba(255, 107, 107, 0.15);
+.cmp-header strong {
+  font-family: var(--font-exo);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+.cmp-header-bad {
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.25);
   color: var(--accent-red);
+  border-radius: 12px;
 }
 
-.comparison-table thead th.good {
-  background: rgba(50, 205, 50, 0.15);
-  color: var(--accent-green);
+.cmp-header-bad .hdr-icon {
+  font-size: 1.15rem;
+  line-height: 1;
 }
 
-.comparison-table tbody td {
-  padding: 12px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  vertical-align: middle;
+.cmp-header-good {
+  background: linear-gradient(180deg, rgba(50, 205, 50, 0.35) 0%, rgba(50, 205, 50, 0.15) 100%);
+  color: #7dff7d;
+  padding-top: 10px;
 }
 
-.comparison-table tbody td:first-child {
+.cmp-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 12px rgba(50, 205, 50, 0.45);
+}
+
+.cmp-good-glow {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: 100%;
+  border: 2px solid var(--accent-gold);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(50, 205, 50, 0.14) 0%, rgba(14, 28, 85, 0.55) 100%);
+  box-shadow:
+    0 0 22px rgba(255, 203, 93, 0.35),
+    inset 0 0 24px rgba(50, 205, 50, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.cmp-good-glow .cmp-header-good {
+  border-radius: 0;
+  border: none;
+}
+
+.cmp-good-glow .cmp-cell-good:last-child {
+  margin-bottom: 0;
+}
+
+.cmp-cell {
+  min-height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.cmp-bad .cmp-cell {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--text-secondary);
-  font-size: 0.78rem;
-  text-align: center;
 }
 
-.comparison-table tbody td:nth-child(2) {
-  text-align: center;
+.cmp-bad .cmp-x {
   color: var(--accent-red);
-  background: rgba(255, 107, 107, 0.04);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(255, 107, 107, 0.45);
 }
 
-.comparison-table tbody td:nth-child(3) {
-  text-align: center;
-  color: var(--accent-green);
-  background: rgba(50, 205, 50, 0.04);
-  font-weight: 600;
+.cmp-cell-good {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(50, 205, 50, 0.15);
+  margin: 0 6px;
+  border-radius: 10px;
+}
+
+.cmp-cell-good strong {
+  font-family: var(--font-exo);
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8dff8d;
+  line-height: 1.25;
+}
+
+.cmp-cell-good small {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cmp-good-glow .cmp-cell-good:last-child {
+  padding-bottom: 12px;
 }
 
 /* ── Benefits ── */
@@ -1519,8 +1674,35 @@ footer p {
     max-width: 700px;
   }
 
-  .comparison-table {
-    max-width: 600px;
+  .comparison-board {
+    max-width: 620px;
+  }
+
+  .comparison-columns {
+    gap: 10px;
+  }
+
+  .cmp-col {
+    gap: 10px;
+  }
+
+  .cmp-label {
+    font-size: 0.68rem;
+    min-height: 58px;
+    padding: 10px 9px;
+  }
+
+  .cmp-cell {
+    min-height: 58px;
+    font-size: 0.8rem;
+  }
+
+  .cmp-cell-good strong {
+    font-size: 0.68rem;
+  }
+
+  .cmp-header strong {
+    font-size: 0.72rem;
   }
 
   .pricing-box {
